@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged",
+    "pre-commit": "lint-staged",
     "eslint": "./node_modules/.bin/eslint src/"
   },
   "devDependencies": {
@@ -20,6 +24,7 @@
     "eslint-plugin-prettier": "^2.7.0",
     "husky": "^1.0.1",
     "lint-staged": "^7.3.0",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "redux-logger": "^3.0.6"
   }
 }
