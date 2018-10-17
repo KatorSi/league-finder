@@ -26,7 +26,7 @@ export class Page extends React.Component {
                     ) : error ? (
                         <p>{error}</p>
                     ) : (
-                        <p>Выбрана лига "{league}"</p>
+                        <p>Выбрана лига {league}</p>
                     )}
                 </div>
             </div>

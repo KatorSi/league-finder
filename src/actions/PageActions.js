@@ -11,14 +11,18 @@ export const getLeague = league => {
             payload: league,
         });
         fetch(
-            'http://leaguefinder',
+            'http://leaguefinder/league',
             {
                 method: 'POST',
                 mode: 'cors',
+                data: {
+                    title: league,
+                },
             }
             //'https://api.opendota.com/api/explorer?sql=SELECT match_id FROM matches WHERE leagueid=4918'
         ) //fetch('https://api.opendota.com/api/leagues')
             .then(response => {
+                console.log(response);
                 return response.json();
             })
             .then(data => {
