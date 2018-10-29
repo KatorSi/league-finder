@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export class User extends React.Component {
     render() {
         const { name } = this.props;
+        console.log('<User/> render');
         return (
             <div className="ib user">
                 <p>Привет, {name}</p>

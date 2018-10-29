@@ -4,12 +4,16 @@ import {
     GET_LEAGUE_FAIL,
     SET_GAME,
     SET_LEAGUE,
+    CHANGE_CURRENT_LEAGUE,
+    FILL_LEAGUES,
+    CLEAR_LEAGUES,
 } from '../actions/PageActions';
 
 // state потом разделится на game- и league- редьюсеры
 const initialState = {
     game: 'Dota 2',
-    league: 'not_selected',
+    currentLeague: '',
+    leagues: [],
     isFetching: false,
     error: '',
 };
@@ -26,6 +30,12 @@ export const pageReducer = (state = initialState, action) => {
             return { ...state, game: action.payload };
         case SET_LEAGUE:
             return { ...state, league: action.payload };
+        case CHANGE_CURRENT_LEAGUE:
+            return { ...state, currentLeague: action.payload };
+        case FILL_LEAGUES:
+            return { ...state, leagues: action.payload };
+        case CLEAR_LEAGUES:
+            return { ...state, leagues: [] };
         default:
             return state;
     }

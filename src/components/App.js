@@ -1,27 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { User } from './User';
-import { Page } from './Page';
-import { getLeague, setGame } from '../actions/PageActions';
+import PageContainer from '../containers/PageContainer';
+import UserContainer from '../containers/UserContainer';
+import Autosuggest from 'react-autosuggest';
 import './App.css';
 
 class App extends Component {
+    onRecalculate = (val, reason) => {
+        console.log(val);
+        console.log(reason);
+    };
+    onClean = () => {
+        console.log('onClean');
+    };
+    getSuggest = suggest => {
+        console.log('suggest: ' + suggest);
+        return suggest;
+    };
     render() {
-        let { page, user } = this.props;
-        let { setLeague } = this.props;
+        const { leagues, game } = this.props.page;
+        const inputProps = {
+            placeholder: 'Type a programming language',
+            value: game,
+            onChange: val => {
+                console.log('val: ' + val);
+            },
+        };
+        console.log('<App /> render');
         return (
             <div className="App">
                 <header className="App-header">
                     <h1 className="App-title">League Finder</h1>
                 </header>
-                <User name={user.name} />
-                <Page
-                    game={page.game}
-                    league={page.league}
-                    isFetching={page.isFetching}
-                    error={page.error}
-                    setLeague={setLeague}
+                <Autosuggest
+                    suggestions={leagues}
+                    onSuggestionsFetchRequested={this.onRecalculate}
+                    onSuggestionsClearRequested={this.onClean}
+                    getSuggestionValue={this.getSuggest}
+                    renderSuggestion={suggest => <div>{suggest}</div>}
+                    inputProps={inputProps}
                 />
+                {/* <UserContainer />
+                <PageContainer /> */}
             </div>
         );
     }
@@ -29,17 +49,8 @@ class App extends Component {
 
 const mapStateToProps = store => {
     return {
-        user: store.user,
         page: store.page,
     };
 };
 
-const mapDispatchToProps = dispatch => ({
-    setLeague: league => dispatch(getLeague(league)),
-    setGame: game => dispatch(setGame(game)),
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(App);
